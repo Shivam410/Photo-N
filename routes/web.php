@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [UserController::class,'index'])->name('index');
-Route::get('/about-us', [UserController::class,'about'])->name('about');
+Route::get('/about', [UserController::class,'about'])->name('about');
 
 Route::get('/contact', [UserController::class,'contact'])->name('contact');
 Route::get('/service', [UserController::class,'service'])->name('service');

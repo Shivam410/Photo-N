@@ -1,19 +1,19 @@
 <header class="fixed top-0 left-0 right-0 z-50 h-20 border-b border-white/10 transition-all duration-300 backdrop-blur-xl bg-black/80">
     <div class="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
         <a class="flex items-center gap-3" href="{{ url('/') }}">
-            <span class="text-primary text-2xl font-black tracking-tight">NashikPhoto</span>
+            <span class="text-primary text-2xl font-black tracking-tight">Photo</span>
         </a>
 
         <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider text-slate-200">
-            <a class="hover:text-primary transition-colors" href="{{ url('/') }}">Home</a>
-            <a class="hover:text-primary transition-colors" href="{{ url('/about') }}">About</a>
-            <a class="hover:text-primary transition-colors" href="{{ url('/service') }}">Services</a>
-            <a class="hover:text-primary transition-colors" href="{{ url('/portfolio') }}">Portfolio</a>
-            <a class="hover:text-primary transition-colors" href="{{ url('/contact') }}">Contact</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('index') }}">Home</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('about') }}">About</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('service') }}">Services</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('portfolio') }}">Portfolio</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact</a>
         </nav>
 
         <a class="hidden sm:inline-flex items-center gap-2 bg-primary hover:bg-red-600 text-white px-5 py-2.5 rounded-full font-bold transition-all"
-            href="{{ url('/contact') }}">
+            href="{{ route('contact') }}">
             Book Now
             <span class="material-symbols-outlined text-base">arrow_forward</span>
         </a>
@@ -32,13 +32,13 @@
     <div class="md:hidden border-t border-white/10 bg-black max-h-0 opacity-0 overflow-hidden transition-all duration-300"
         id="mobileNavMenu">
         <nav class="px-6 py-5 flex flex-col gap-4 text-sm font-semibold uppercase tracking-wider text-slate-200" >
-            <a class="hover:text-primary transition-colors" href="{{ url('/') }}">Home</a>
-            <a class="hover:text-primary transition-colors" href="{{ url('/about') }}">About</a>
-            <a class="hover:text-primary transition-colors" href="{{ url('/service') }}">Services</a>
-            <a class="hover:text-primary transition-colors" href="{{ url('/portfolio') }}">Portfolio</a>
-            <a class="hover:text-primary transition-colors" href="{{ url('/contact') }}">Contact</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('index') }}">Home</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('about') }}">About</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('service') }}">Services</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('portfolio') }}">Portfolio</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact</a>
             <a class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-red-600 text-white px-5 py-3 rounded-full font-bold transition-all mt-2"
-                href="{{ url('/contact') }}">
+                href="{{ route('contact') }}">
                 Book Now
                 <span class="material-symbols-outlined text-base">arrow_forward</span>
             </a>

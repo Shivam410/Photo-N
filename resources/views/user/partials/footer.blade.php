@@ -31,7 +31,7 @@
 
     <div class="border-t border-white/10">
         <div class="max-w-7xl mx-auto px-6 py-5 text-sm text-slate-500 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-            <p>&copy; {{ date('Y') }} NashikPhoto. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Photo. All rights reserved.</p>
             <p>Crafted with visual precision.</p>
         </div>
     </div>

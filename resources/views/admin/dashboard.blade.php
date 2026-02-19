@@ -16,7 +16,7 @@
     <div class="min-h-screen lg:grid lg:grid-cols-[280px_1fr]">
         <aside class="border-r border-white/10 bg-black/70 backdrop-blur-xl">
             <div class="h-20 px-6 flex items-center border-b border-white/10">
-                <span class="text-2xl font-black tracking-tight text-white">Nashik<span class="text-primary">Admin</span></span>
+                <span class="text-2xl font-black tracking-tight text-white"><span class="text-primary">Admin</span></span>
             </div>
             <nav class="p-5 space-y-2">
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/20 border border-primary/30 text-white font-semibold"
