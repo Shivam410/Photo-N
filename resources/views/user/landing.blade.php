@@ -132,91 +132,161 @@
         </div>
     </section>
     <section class="brand-section">
-    <div class="brand-container">
-        <div class="brand-track" id="brandTrack">
-            <span>Adobe</span>
-            <span>Canon</span>
-            <span>Nikon</span>
-            <span>Sony</span>
-            <span>Fujifilm</span>
-            <span>Panasonic</span>
-            <span>Leica</span>
-            <span>GoPro</span>
+    <div class="brand-inner">
+
+        <h2 class="brand-title">Trusted By Leading Brands</h2>
+
+        <div class="brand-wrapper">
+            <div class="brand-track" id="brandTrack">
+                @forelse (($brands ?? collect()) as $brand)
+                    <div class="brand-item">
+                        <img src="{{ asset($brand->image_path) }}"
+                             alt="{{ $brand->name }}"
+                             title="{{ $brand->name }}">
+                    </div>
+                @empty
+                    @foreach (['Adobe','Canon','Nikon','Sony','Fujifilm','Panasonic','Leica','GoPro'] as $name)
+                        <div class="brand-item text-fallback">
+                            {{ $name }}
+                        </div>
+                    @endforeach
+                @endforelse
+            </div>
         </div>
+
     </div>
 </section>
-
 <style>
-.brand-section {
-    background: #0e0e0e;
-    padding: 80px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.brand-container {
+    .brand-section {
+    padding: 120px 0;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 70%);
     overflow: hidden;
     position: relative;
 }
 
-/* Gradient fade edges (Luxury look) */
-.brand-container::before,
-.brand-container::after {
+.brand-inner {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.brand-title {
+    text-align: center;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 70px;
+    opacity: 0.85;
+}
+
+/* Wrapper */
+.brand-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Premium fade edges */
+.brand-wrapper::before,
+.brand-wrapper::after {
     content: "";
     position: absolute;
     top: 0;
-    width: 150px;
+    width: 180px;
     height: 100%;
     z-index: 2;
     pointer-events: none;
 }
 
-.brand-container::before {
+.brand-wrapper::before {
     left: 0;
-    background: linear-gradient(to right, #0e0e0e 0%, transparent 100%);
+    background: linear-gradient(to right, #0c0c0c 0%, transparent 100%);
 }
 
-.brand-container::after {
+.brand-wrapper::after {
     right: 0;
-    background: linear-gradient(to left, #0e0e0e 0%, transparent 100%);
+    background: linear-gradient(to left, #0c0c0c 0%, transparent 100%);
 }
 
+/* Track */
 .brand-track {
     display: flex;
-    gap: 100px;
+    align-items: center;
+    gap: 120px;
     white-space: nowrap;
     will-change: transform;
 }
 
-.brand-track span {
-    font-size: 32px;
-    font-weight: 600;
-    color: #ffffff;
-    opacity: 0.7;
-    letter-spacing: 1px;
+/* Brand card */
+.brand-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    transition: all 0.4s ease;
+    opacity: 0.6;
+}
+
+.brand-item img {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
     transition: all 0.4s ease;
 }
 
-.brand-track span:hover {
+/* Hover interaction */
+.brand-item:hover {
     opacity: 1;
-    transform: translateY(-3px);
+    transform: translateY(-6px);
 }
-</style>
 
+.brand-item:hover img {
+    filter: grayscale(0%);
+}
+
+/* Text fallback */
+.text-fallback {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .brand-track {
+        gap: 80px;
+    }
+    .brand-item img {
+        max-height: 36px;
+    }
+}
+
+@media (max-width: 576px) {
+    .brand-track {
+        gap: 50px;
+    }
+    .brand-item img {
+        max-height: 28px;
+    }
+}
+
+</style>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const track = document.getElementById("brandTrack");
 
-    // Clone automatically for seamless scroll (no manual duplicate)
-    track.innerHTML += track.innerHTML;
+    const children = Array.from(track.children);
+    children.forEach(child => {
+        track.appendChild(child.cloneNode(true));
+    });
 
     let position = 0;
-    const speed = 0.5; // Lower = slower luxury feel
+    let speed = 0.4;
+    const singleWidth = track.scrollWidth / 2;
 
     function animate() {
         position -= speed;
 
-        if (Math.abs(position) >= track.scrollWidth / 2) {
+        if (Math.abs(position) >= singleWidth) {
             position = 0;
         }
 
@@ -226,11 +296,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     animate();
 
-    // Pause on hover
     track.addEventListener("mouseenter", () => speed = 0);
-    track.addEventListener("mouseleave", () => speed = 0.5);
+    track.addEventListener("mouseleave", () => speed = 0.4);
 });
 </script>
+
 
     <section class="py-24 px-6 bg-white dark:bg-[#0E0E0E]" id="about">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

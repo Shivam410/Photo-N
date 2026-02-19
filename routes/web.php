@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\AboutController as AdminAboutController;
+use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +30,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (): void {
     Route::get('/about', [AdminAboutController::class, 'edit'])->name('admin.about.edit');
     Route::post('/about', [AdminAboutController::class, 'store'])->name('admin.about.store');
     Route::put('/about/{about}', [AdminAboutController::class, 'update'])->name('admin.about.update');
+    Route::get('/brands', [AdminBrandController::class, 'index'])->name('admin.brands.index');
+    Route::get('/brands/create', [AdminBrandController::class, 'create'])->name('admin.brands.create');
+    Route::post('/brands', [AdminBrandController::class, 'store'])->name('admin.brands.store');
+    Route::get('/brands/{brand}/edit', [AdminBrandController::class, 'edit'])->name('admin.brands.edit');
+    Route::put('/brands/{brand}', [AdminBrandController::class, 'update'])->name('admin.brands.update');
+    Route::delete('/brands/{brand}', [AdminBrandController::class, 'destroy'])->name('admin.brands.destroy');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });
