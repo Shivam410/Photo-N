@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Brand;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,6 +14,7 @@ class UserController extends Controller
         return view('user.landing', [
             'about' => About::query()->first(),
             'brands' => Brand::query()->orderBy('sort_order')->orderBy('id')->get(),
+            'services' => Service::query()->orderBy('position')->orderBy('id')->get(),
         ]);
     }
     public function about()
@@ -27,7 +29,9 @@ class UserController extends Controller
     }
     public function service()
     {
-        return view('user.service');
+        return view('user.service', [
+            'services' => Service::query()->orderBy('position')->orderBy('id')->get(),
+        ]);
     }
     public function portfolio()
     {

@@ -54,126 +54,47 @@
         <!-- Main Services Section -->
         <section class="py-24 px-6">
             <div class="max-w-7xl mx-auto space-y-32">
-                <!-- Wedding & Engagement -->
-                <div class="flex flex-col lg:flex-row items-center gap-16">
-                    <div class="w-full lg:w-1/2 aspect-[4/3] rounded-xl overflow-hidden shadow-2xl group">
-                        <img alt="Luxury wedding ceremony photography"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            data-alt="Elegant wedding couple in a soft natural light setting"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLc9iz9lp1jhoJo_mdRrif4tNdQ_kgsUWQBzRxF2lB0QhjCD5O3brtOCydcX3c9d2zjHWgTHrcStTyh8vw1owPUyeE6uMgDgnwUmuQgF--p6spvyfOIkKAcw8KcpPQrJ6TQ_Hf6TXvvf7FwCKFyolrDyLu3U1RW2t_iBr6efLtT9IVmsgrEWdrX5qkMFvXAeJRlsryoZvlDd77hvAEvRgjaNQ_zEdw1GFF4GLboA-qz4Im9VaHBVt14Yuk5z1ZOTaQyf1-FH8-IVrk" />
-                    </div>
-                    <div class="w-full lg:w-1/2 space-y-6">
-                        <h2 class="text-3xl md:text-4xl font-bold">Wedding &amp; Engagement</h2>
-                        <p class="text-slate-400 text-lg leading-relaxed">
-                            We document your love story with a blend of cinematic documentary and editorial portraiture.
-                            Every subtle glance and grand celebration is preserved in timeless detail.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span> 8-12
-                                hours of professional coverage
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span> 400+
-                                High-resolution edited images
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span> Private
-                                online viewing gallery
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Fine-art prints and leather album
-                            </li>
-                        </ul>
-                        <div class="pt-4">
-                            <button
-                                class="bg-card-dark border border-border-dark hover:border-primary text-white px-8 py-3 rounded-lg font-bold transition-all inline-flex items-center gap-2">
-                                View Package <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </button>
+                @forelse ($services as $index => $service)
+                    @php
+                        $imageUrl = file_exists(public_path($service->image_path))
+                            ? asset($service->image_path)
+                            : asset('storage/' . $service->image_path);
+                        $isReversed = $index % 2 !== 0; // Alternate layout
+                    @endphp
+                    
+                    <div class="flex flex-col {{ $isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row' }} items-center gap-16">
+                        <div class="w-full lg:w-1/2 aspect-[4/3] rounded-xl overflow-hidden shadow-2xl group">
+                            <img alt="{{ $service->title }}"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                src="{{ $imageUrl }}" />
+                        </div>
+                        <div class="w-full lg:w-1/2 space-y-6">
+                            <h2 class="text-3xl md:text-4xl font-bold">{{ $service->title }}</h2>
+                            <p class="text-slate-400 text-lg leading-relaxed">
+                                {{ $service->description }}
+                            </p>
+                            @if ($service->features && count($service->features) > 0)
+                                <ul class="space-y-3">
+                                    @foreach ($service->features as $feature)
+                                        <li class="flex items-center gap-3 text-slate-300">
+                                            <span class="material-symbols-outlined text-primary text-sm">check_circle</span> {{ $feature }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            <div class="pt-4">
+                                <button
+                                    class="bg-card-dark border border-border-dark hover:border-primary text-white px-8 py-3 rounded-lg font-bold transition-all inline-flex items-center gap-2">
+                                    View Package <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Portrait & Lifestyle (Reversed) -->
-                <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
-                    <div class="w-full lg:w-1/2 aspect-[4/3] rounded-xl overflow-hidden shadow-2xl group">
-                        <img alt="Professional portrait photography"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            data-alt="High-end professional studio headshot of a man"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ4zlVsQA_o0ADciLvw-3eQ_Ub1YYvtHtP2QKZaiaoN1D1x05GLgElWTBRc2dyVT0h6Ky4v9qKUSg_T0kVQFkTaW8JBEs51zJpCl_ZCB-CBPB8W59yYFh7vob5TnUsD7ODmWa6l7LsbE7m-q58SxCNHrlNLaoS-8Hst-2Fv9bpiSi6NHB3KU3qL7MFVIogzsZaKCed9G8Umez8r1AtDywIHEjvy4g63vibbF83endWUjZ3XuOjkcGUArbr4haoByBm-h-xRvMHUL15" />
+                @empty
+                    <div class="text-center py-16">
+                        <p class="text-slate-400 text-lg">No services available at the moment.</p>
                     </div>
-                    <div class="w-full lg:w-1/2 space-y-6">
-                        <h2 class="text-3xl md:text-4xl font-bold">Portrait &amp; Lifestyle</h2>
-                        <p class="text-slate-400 text-lg leading-relaxed">
-                            Perfect for entrepreneurs, artists, and families who value authentic expression. We focus on
-                            natural posing and lighting that highlights your unique personality.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span> 2-hour
-                                studio or location session
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span> Up to 3
-                                wardrobe changes
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Professional skin retouching
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Commercial usage license
-                            </li>
-                        </ul>
-                        <div class="pt-4">
-                            <button
-                                class="bg-card-dark border border-border-dark hover:border-primary text-white px-8 py-3 rounded-lg font-bold transition-all inline-flex items-center gap-2">
-                                View Package <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Commercial & Editorial -->
-                <div class="flex flex-col lg:flex-row items-center gap-16">
-                    <div class="w-full lg:w-1/2 aspect-[4/3] rounded-xl overflow-hidden shadow-2xl group">
-                        <img alt="Fashion editorial photography"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            data-alt="Stylized fashion editorial shot with high contrast lighting"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuACe3qxdw2HYN58UCs07jTR5nUfo6QCIOIWen5_G8jZx-07dPAgLLLD0rdIu6S6VJSZqmEc0qnu2uNyYcZPi2i7YuQf7e4TgnjWCGi9xAM1mWQFFMtELvtudKRsWuoT9Tj5YFRXUdmDE0xCZlG09Nf-2bhPMWz7ab0crgrtjulpJpTFyBXms53X5BSUPfE0kFYRjTAGNvR8laAEU8bN8UzoCjv95NcTj9bQI7BztApSd2JJIUlyoYZBPia1_d191PuJD2h7-2YsJndj" />
-                    </div>
-                    <div class="w-full lg:w-1/2 space-y-6">
-                        <h2 class="text-3xl md:text-4xl font-bold">Commercial &amp; Editorial</h2>
-                        <p class="text-slate-400 text-lg leading-relaxed">
-                            Visual storytelling for brands that demand excellence. From fashion lookbooks to corporate
-                            marketing assets, we deliver high-impact imagery that drives engagement.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span> Full
-                                day production team
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span> Art
-                                direction &amp; storyboard planning
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Advanced color grading
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Multi-platform delivery
-                            </li>
-                        </ul>
-                        <div class="pt-4">
-                            <button
-                                class="bg-card-dark border border-border-dark hover:border-primary text-white px-8 py-3 rounded-lg font-bold transition-all inline-flex items-center gap-2">
-                                View Package <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </section>
         <!-- Specialized Services Grid -->

@@ -270,7 +270,99 @@
             </main>
         </div>
 
-        @if (Route::has('login'))
+        <!-- Services Section -->
+         <style>
+          .home-service-desc {
+             display: -webkit-box;
+            -webkit-line-clamp: 3;   /* show only 3 lines */
+            -webkit-box-orient: vertical;
+             overflow: hidden;
+            }
+       </style>
+
+<!-- Services Section -->
+       <section class="w-full mt-20 py-16">
+           <div class="max-w-7xl mx-auto px-6">
+              <div class="text-center mb-12">
+                <p class="text-red-600 dark:text-red-500 font-semibold tracking-widest text-sm mb-4">EXPERTISE</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Services We Provide</h2>
+             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Wedding Sessions -->
+            <div class="bg-slate-900 dark:bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-red-600/50 transition-all group">
+                <div class="bg-red-900/30 text-red-600 w-14 h-14 flex items-center justify-center rounded-lg mb-6 group-hover:bg-red-600 group-hover:text-white transition-all">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+
+                   <h3 class="text-xl font-bold mb-4 text-white">Wedding Sessions</h3>
+
+                   <p class="text-slate-400 text-sm leading-relaxed mb-6 
+                          overflow-hidden 
+                          [display:-webkit-box] 
+                          [-webkit-box-orient:vertical] 
+                          [-webkit-line-clamp:3]">
+                        Capturing the intimate emotions and grand celebrations of your most special day with a cinematic eye.
+                   </p>
+
+                   <a href="{{ route('service') }}" class="text-red-600 font-bold text-sm flex items-center gap-2 hover:text-red-500">
+                       View <span>→</span>
+                   </a>
+                </div>
+
+                  <!-- Premium Portraits -->
+            <div class="bg-slate-900 dark:bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-red-600/50 transition-all group">
+                <div class="bg-red-900/30 text-red-600 w-14 h-14 flex items-center justify-center rounded-lg mb-6 group-hover:bg-red-600 group-hover:text-white transition-all">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 21H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2zm-10-1.5l6-7.5-4-5-4 5 2 7.5z"/>
+                    </svg>
+                </div>
+
+                <h3 class="text-xl font-bold mb-4 text-white">Premium Portraits</h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed mb-6 
+                          overflow-hidden 
+                          [display:-webkit-box] 
+                          [-webkit-box-orient:vertical] 
+                          [-webkit-line-clamp:3]">
+                    Professional headshots, artistic solos, and family legacies. We bring out the best version of you.
+                </p>
+
+                <a href="{{ route('service') }}" class="text-red-600 font-bold text-sm flex items-center gap-2 hover:text-red-500">
+                    View <span>→</span>
+                </a>
+            </div>
+
+            <!-- Commercial Media -->
+            <div class="bg-slate-900 dark:bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-red-600/50 transition-all group">
+                <div class="bg-red-900/30 text-red-600 w-14 h-14 flex items-center justify-center rounded-lg mb-6 group-hover:bg-red-600 group-hover:text-white transition-all">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H4V4h14v10z"/>
+                    </svg>
+                </div>
+
+                <h3 class="text-xl font-bold mb-4 text-white">Commercial Media</h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed mb-6 
+                          overflow-hidden 
+                          [display:-webkit-box] 
+                          [-webkit-box-orient:vertical] 
+                          [-webkit-line-clamp:3]">
+                    Elevate your brand with high-end product photography and editorial visual content for campaigns.
+                </p>
+
+                <a href="{{ route('service') }}" class="text-red-600 font-bold text-sm flex items-center gap-2 hover:text-red-500">
+                    View <span>→</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>    
+       @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
     </body>

@@ -84,6 +84,17 @@
                 transform: translateX(calc(-1 * var(--brand-loop-distance)));
             }
         }
+
+        .service-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .service-description::after {
+            content: '...';
+        }
     </style>
 </head>
 
@@ -350,51 +361,26 @@ document.addEventListener("DOMContentLoaded", function () {
             <h3 class="text-4xl md:text-5xl font-display font-bold">Services We Provide</h3>
         </div>
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div
-                class="group bg-white dark:bg-[#151515] p-10 rounded-3xl border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+            @forelse($services as $service)
                 <div
-                    class="w-16 h-16 bg-red-50 dark:bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-primary text-3xl">favorite</span>
+                    class="group bg-white dark:bg-[#151515] p-10 rounded-3xl border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+                    <div
+                        class="w-16 h-16 bg-red-50 dark:bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">favorite</span>
+                    </div>
+                    <h4 class="text-2xl font-display font-bold mb-4">{{ $service->title }}</h4>
+                    <p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed service-description">{{ $service->description }}</p>
+                    <a class="flex items-center gap-2 text-primary font-semibold group/link" href="{{ route('service') }}">
+                        View
+                        <span
+                            class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
                 </div>
-                <h4 class="text-2xl font-display font-bold mb-4">Wedding Sessions</h4>
-                <p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">Capturing the intimate emotions and
-                    grand celebrations of your most special day with a cinematic eye.</p>
-                <a class="flex items-center gap-2 text-primary font-semibold group/link" href="#">
-                    View
-                    <span
-                        class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-                </a>
-            </div>
-            <div
-                class="group bg-white dark:bg-[#151515] p-10 rounded-3xl border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
-                <div
-                    class="w-16 h-16 bg-red-50 dark:bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-primary text-3xl">person</span>
+            @empty
+                <div class="col-span-full text-center py-12">
+                    <p class="text-slate-500 dark:text-slate-400">No services available at the moment.</p>
                 </div>
-                <h4 class="text-2xl font-display font-bold mb-4">Premium Portraits</h4>
-                <p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">Professional headshots, artistic
-                    solos, and family legacies. We bring out the best version of you.</p>
-                <a class="flex items-center gap-2 text-primary font-semibold group/link" href="#">
-                    View
-                    <span
-                        class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-                </a>
-            </div>
-            <div
-                class="group bg-white dark:bg-[#151515] p-10 rounded-3xl border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
-                <div
-                    class="w-16 h-16 bg-red-50 dark:bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-primary text-3xl">business_center</span>
-                </div>
-                <h4 class="text-2xl font-display font-bold mb-4">Commercial Media</h4>
-                <p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">Elevate your brand with high-end
-                    product photography and editorial visual content for campaigns.</p>
-                <a class="flex items-center gap-2 text-primary font-semibold group/link" href="#">
-                    View
-                    <span
-                        class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-                </a>
-            </div>
+            @endforelse
         </div>
     </section>
     <section class="py-24 px-6 bg-white dark:bg-[#0E0E0E]" id="portfolio">

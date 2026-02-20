@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\AboutController as AdminAboutController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (): void {
     Route::put('/brands/{brand}', [AdminBrandController::class, 'update'])->name('admin.brands.update');
     Route::delete('/brands/{brand}', [AdminBrandController::class, 'destroy'])->name('admin.brands.destroy');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+});
+
+//services 
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::resource('services', ServiceController::class);
+
+    // Optional: explicit edit & update routes if you want custom URLs
+    Route::get('services/edit/{id?}', [ServiceController::class, 'edit'])->name('services.edit');
+    Route::put('services/update/{id?}', [ServiceController::class, 'update'])->name('services.update');
+
 });
