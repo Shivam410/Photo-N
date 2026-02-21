@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Brand;
+use App\Models\Portfolio;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -33,8 +34,20 @@ class UserController extends Controller
             'services' => Service::query()->orderBy('position')->orderBy('id')->get(),
         ]);
     }
-    public function portfolio()
+    public function portfolio(Request $request)
     {
-        return view('user.portfolio');
+        $category = $request->query('category');
+        
+        $query = Portfolio::query();
+        
+        if ($category) {
+            $query->where('category', $category);
+        }
+        
+        return view('user.portfolio', [
+            'portfolios' => $query->get(),
+            'selectedCategory' => $category,
+            'categories' => ['wedding', 'portrait', 'commercial', 'editorial', 'landscape'],
+        ]);
     }
 }

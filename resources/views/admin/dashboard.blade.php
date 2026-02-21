@@ -24,6 +24,19 @@
                         <p class="text-3xl font-extrabold mt-2">$12,480</p>
                         <p class="text-emerald-400 text-xs mt-2">+12.7% vs last month</p>
                     </div>
+                    <a href="{{ route('admin.portfolio.index') }}" class="rounded-2xl border border-white/10 bg-[#121212] p-5 hover:border-primary/50 hover:bg-primary/5 transition-all">
+                        <p class="text-slate-400 text-sm">Portfolio Items</p>
+                        <p class="text-3xl font-extrabold mt-2">
+                            @php
+                                try {
+                                    echo \App\Models\Portfolio::count();
+                                } catch (\Exception $e) {
+                                    echo '0';
+                                }
+                            @endphp
+                        </p>
+                        <p class="text-primary text-xs mt-2">Manage portfolio →</p>
+                    </a>
                 </section>
 
                 <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">

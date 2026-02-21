@@ -6,9 +6,9 @@
 
         <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider text-slate-200">
             <a class="hover:text-primary transition-colors" href="{{ route('index') }}">Home</a>
-            <a class="hover:text-primary transition-colors" href="{{ route('about') }}">About</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('user.about') }}">About</a>
             <a class="hover:text-primary transition-colors" href="{{ route('service') }}">Services</a>
-            <a class="hover:text-primary transition-colors" href="{{ route('portfolio') }}">Portfolio</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('user.portfolio') }}">Portfolio</a>
             <a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact</a>
         </nav>
 
@@ -33,9 +33,9 @@
         id="mobileNavMenu">
         <nav class="px-6 py-5 flex flex-col gap-4 text-sm font-semibold uppercase tracking-wider text-slate-200" >
             <a class="hover:text-primary transition-colors" href="{{ route('index') }}">Home</a>
-            <a class="hover:text-primary transition-colors" href="{{ route('about') }}">About</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('user.about') }}">About</a>
             <a class="hover:text-primary transition-colors" href="{{ route('service') }}">Services</a>
-            <a class="hover:text-primary transition-colors" href="{{ route('portfolio') }}">Portfolio</a>
+            <a class="hover:text-primary transition-colors" href="{{ route('user.portfolio') }}"> Portfolio</a>
             <a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact</a>
             <a class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-red-600 text-white px-5 py-3 rounded-full font-bold transition-all mt-2"
                 href="{{ route('contact') }}">

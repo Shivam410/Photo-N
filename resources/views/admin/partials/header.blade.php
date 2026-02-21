@@ -31,7 +31,10 @@
                    href="{{ route('admin.services.index') }}">
                    <span class="material-symbols-outlined text-base">design_services</span> Services
                 </a>
-
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition-colors"
+                    href="{{ route('admin.portfolio.index') }}">
+                    <span class="material-symbols-outlined text-base">image_search</span> Portfolio
+                </a>
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition-colors"
                     href="{{ route('admin.brands.index') }}">
                     <span class="material-symbols-outlined text-base">branding_watermark</span> Brands
