@@ -32,6 +32,14 @@
                                       @error('description') is-invalid @enderror></textarea>
                         </div>
 
+                        <!-- Image -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-slate-300 mb-2">Image</label>
+                            <input type="file" name="image[]" required
+                                class="w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-white
+                                       file:mr-4 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-2 file:text-white">
+                        </div>
+
                         <!-- Features -->
                         <div class="mb-4">
                             <div class="flex items-center justify-between mb-2">
@@ -97,6 +105,13 @@ function addService() {
             <label class="block text-sm font-semibold text-slate-300 mb-2">Description</label>
             <textarea name="description[]" placeholder="Service Description"
                       class="w-full mb-3 bg-black/40 border border-white/10 px-4 py-3 rounded text-white focus:outline-none focus:ring-2 focus:ring-primary min-h-32"></textarea>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Image</label>
+            <input type="file" name="image[]" required
+                class="w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-white
+                       file:mr-4 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-2 file:text-white">
         </div>
 
         <div class="mb-4">

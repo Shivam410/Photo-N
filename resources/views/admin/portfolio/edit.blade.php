@@ -50,6 +50,9 @@
                         <option value="commercial" {{ old('category', $portfolio->category) == 'commercial' ? 'selected' : '' }}>Commercial</option>
                         <option value="editorial" {{ old('category', $portfolio->category) == 'editorial' ? 'selected' : '' }}>Editorial</option>
                         <option value="landscape" {{ old('category', $portfolio->category) == 'landscape' ? 'selected' : '' }}>Landscape</option>
+                        <option value="nature" {{ old('category', $portfolio->category) == 'nature' ? 'selected' : '' }}>Nature</option>
+                        <option value="passion" {{ old('category', $portfolio->category) == 'passion' ? 'selected' : '' }}>Passion</option>
+                        <option value="architecture" {{ old('category', $portfolio->category) == 'architecture' ? 'selected' : '' }}>Architecture</option>
                     </select>
                 </div>
 

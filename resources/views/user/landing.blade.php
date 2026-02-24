@@ -390,81 +390,41 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h3 class="text-4xl md:text-5xl font-display font-bold">Featured Masterpieces</h3>
             </div>
             <div class="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-                <button class="bg-primary text-white px-6 py-2 rounded-full whitespace-nowrap">All Work</button>
-                <button
-                    class="bg-slate-100 dark:bg-white/5 hover:bg-white/10 px-6 py-2 rounded-full whitespace-nowrap">Portraits</button>
-                <button
-                    class="bg-slate-100 dark:bg-white/5 hover:bg-white/10 px-6 py-2 rounded-full whitespace-nowrap">Weddings</button>
-                <button
-                    class="bg-slate-100 dark:bg-white/5 hover:bg-white/10 px-6 py-2 rounded-full whitespace-nowrap">Architecture</button>
+                <a href="{{ route('index') }}#portfolio"
+                    class="{{ empty($selectedFeatureCategory) ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-white/5 hover:bg-white/10' }} px-6 py-2 rounded-full whitespace-nowrap transition-colors">
+                    All Work
+                </a>
+                @php
+                    $allowed = ['wedding', 'portrait', 'architecture', 'passion'];
+                @endphp
+                @foreach ($allowed as $category)
+                    @if (collect($featureCategories ?? [])->contains($category))
+                        <a href="{{ route('index', ['feature_category' => $category]) }}#portfolio"
+                           class="{{ ($selectedFeatureCategory ?? null) === $category ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-white/5 hover:bg-white/10' }} px-6 py-2 rounded-full whitespace-nowrap transition-colors">
+                            {{ ucfirst($category) }}
+                        </a>
+                    @endif
+                @endforeach
             </div>
         </div>
-        <div class="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6">
-            <div class="masonry-item relative group overflow-hidden rounded-2xl">
-                <img alt="Wedding Couple"
-                    class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUo1vefjy72fnBTTsfy10WTRNaJa04dZZmMOhjI9UTj6fWMpVLx_QdL03HSDwKjQiAxF91wHNFL-wQ2c64nbeCON2axwojHqlbQt4OI3HxAu3qUj1-ntFn9A_wu-IC_b78VbUNoWnX-JdblnygdBhFWc3bzfXlnWzIDeFUjpLdDmT8jGvmOA3YXWjlaAUGHN38Ips34B1HhJLChpumzUAoqdQyU5Vv7ZBppsQgeGVWflY_dJrCzSFGRfCF_WWuYSFk-dBv4iGKL_2K" />
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
-                    <span class="text-primary text-xs font-bold uppercase tracking-wider mb-2">Wedding</span>
-                    <h5 class="text-xl font-bold">The Eternal Vow</h5>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            @forelse (($features ?? collect()) as $feature)
+                <div class="group overflow-hidden rounded-2xl bg-neutral-dark">
+                    <img alt="Featured Item"
+                        class="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110 rounded-2xl"
+                        src="{{ asset($feature->image) }}" />
                 </div>
-            </div>
-            <div class="masonry-item relative group overflow-hidden rounded-2xl">
-                <img alt="Studio Portrait"
-                    class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJX3YJEVe5BYmZnOGt-Yp2QxWciCxXv0txHwuLgqTlY3Eg6dTE7nYOlyQJK_48UFFPHG5Y-1EcVQoH3sasnRLAqPbTBTzScLXQhOxTdDqNTHKlsExwrbJkB3WrIq8UTRFCOp6gYym1NWKvvrS6M274K6qm4XD2qZ-VF-mwu3MjeAtGtA9-TTVVLytLTH-3t6PMdaLoPNMS7orI_1d7Sx7KRGoQSjkOHc5lghbY-SMQLRwsP3BzdDTs0u6Ta0mhohCGVRmiBAiZJgbK" />
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
-                    <span class="text-primary text-xs font-bold uppercase tracking-wider mb-2">Portrait</span>
-                    <h5 class="text-xl font-bold">Silhouette Study</h5>
+            @empty
+                <div class="col-span-full text-center py-10 text-slate-500 dark:text-slate-400">
+                    No featured items available yet.
                 </div>
-            </div>
-            <div class="masonry-item relative group overflow-hidden rounded-2xl">
-                <img alt="Model Portrait"
-                    class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjMkMPdUMK0FZwMpz5Wd5RVsmdbDsGL5yaaDglb3z4KIAkqPAviy6BDu2hPtN3TeH3B8Y3hOa_ThW_I1t7_kCIkcLtAvp5OMJ-dE2yhn-g7Dm9f3ThCZGxzIIf26RK2KTmoiTXsuzI1KVawvwnbuPR7KQ-Pw110CtSyX4iBqA_o8SDSsmkRqSx0kZr7V4wMKOSvAlsZ3EJXq80_Saz1jKF9Htn8x9X22UjAxtlTlTwUoWs3v2YCo6d34_igR9xz7hHceZVipBxegEL" />
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
-                    <span class="text-primary text-xs font-bold uppercase tracking-wider mb-2">Fashion</span>
-                    <h5 class="text-xl font-bold">Vibrant Expressions</h5>
-                </div>
-            </div>
-            <div class="masonry-item relative group overflow-hidden rounded-2xl">
-                <img alt="Nature Photography"
-                    class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdNU-pVlUK3pSRqSHy1Vazr_cT-kGARNt5ge7ikRIf3MJAsYu7X2L9K5dS1a3yIo5LE-YP8YdCINLfJVLelnN51oqBnDAmxTHLvM2MFp6No4PYhd759p0o77hKDLRAxjYOKyzPqudCYgiW0fJl3XT8ytQ0WUpo10EA8xipbkZxEyVUlhQBsFG0ljOG8nkbUtm9P_Du4D66Oa4gsK0PkEbyb-UuvWKb3jF18FNGjzlDvib_4nhNDvWhvx53yU0uXWeV4Cm-D1y5OQRH" />
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
-                    <span class="text-primary text-xs font-bold uppercase tracking-wider mb-2">Nature</span>
-                    <h5 class="text-xl font-bold">Misty Highlands</h5>
-                </div>
-            </div>
-            <div class="masonry-item relative group overflow-hidden rounded-2xl">
-                <img alt="Commercial Shot"
-                    class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx8eOiIaVgdZrDS8iU-Zu70pSrjxBN4wpmDze7C0_4JYC1H9YaW5brLtsiSwfeGKizzDhlX70YTa_t40h7iGyd8HF9abZVIKAGN7Xys8GOOm4yhVg-XbQkpCYOuW3kYAVZQjfK8ONp7FVVcow-G19Siy56Q75yGodkRvBXq3PImrCrALUVZXC1Nni9eAb0FiQzPChQTNi7NHJZSKL9-PmHSwZnZKhcepAcvLzTTrNmaq6FoNZCCYM8Ta_KCRc7cjytdr0PkT2Caiwk" />
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
-                    <span class="text-primary text-xs font-bold uppercase tracking-wider mb-2">Commercial</span>
-                    <h5 class="text-xl font-bold">Luxe Branding</h5>
-                </div>
-            </div>
-            <div class="masonry-item relative group overflow-hidden rounded-2xl">
-                <img alt="Architecture"
-                    class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRgIP2VfHrvPwdrPzX6vIK0rsk_RQMvIN0tpVAeLBIErHDKqUuuVVuHrG7wQueoOlbTCa87XdSPo1ajmTI5y0BYfgZp-YoIKE4Uc4tEkFMvd7jvU1VfuXJ7wBQg9-p_5wplr2ZOzbk-o8WLNOuGOj4QbtWUeWMDUhZCuOewVNejniHmKfGwjBLRizoWwqeyP-gN6fuEDtx6T8lmGpEmgSJn57qNU0rM3Nv-9qqAbY9qEVqM1ccK5SDhyolpwkIwbY-F7s8aHJKCqWY" />
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
-                    <span class="text-primary text-xs font-bold uppercase tracking-wider mb-2">Architecture</span>
-                    <h5 class="text-xl font-bold">Urban Geometry</h5>
-                </div>
-            </div>
+            @endforelse
         </div>
         <div class="text-center mt-12">
-            <button
-                class="bg-background-dark text-white dark:bg-white dark:text-background-dark px-10 py-4 rounded-full font-bold hover:scale-105 transition-all">Explore
-                All Projects</button>
+            <a href="{{ route('user.portfolio') }}"
+                class="inline-block bg-background-dark text-white dark:bg-white dark:text-background-dark px-10 py-4 rounded-full font-bold hover:scale-105 transition-all">
+                Explore All Projects
+            </a>
         </div>
     </section>
 

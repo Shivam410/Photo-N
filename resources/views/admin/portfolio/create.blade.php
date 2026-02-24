@@ -49,6 +49,9 @@
                         <option value="commercial" {{ old('category') == 'commercial' ? 'selected' : '' }}>Commercial</option>
                         <option value="editorial" {{ old('category') == 'editorial' ? 'selected' : '' }}>Editorial</option>
                         <option value="landscape" {{ old('category') == 'landscape' ? 'selected' : '' }}>Landscape</option>
+                        <option value="nature" {{ old('category') == 'nature' ? 'selected' : '' }}>Nature</option>
+                        <option value="passion" {{ old('category') == 'passion' ? 'selected' : '' }}>Passion</option>
+                        <option value="architecture" {{ old('category') == 'architecture' ? 'selected' : '' }}>Architecture</option>
                     </select>
                 </div>
 

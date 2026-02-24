@@ -28,7 +28,7 @@ class PortfolioController extends Controller
     {
         $validated = $request->validate([
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
-            'category' => ['required', 'in:wedding,portrait,commercial,editorial,landscape'],
+            'category' => ['required', 'in:wedding,portrait,commercial,editorial,landscape,nature,passion,architecture'],
         ]);
 
         $imagePath = $this->storePublicImage($request);
@@ -52,7 +52,7 @@ class PortfolioController extends Controller
     {
         $validated = $request->validate([
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
-            'category' => ['required', 'in:wedding,portrait,commercial,editorial,landscape'],
+            'category' => ['required', 'in:wedding,portrait,commercial,editorial,landscape,nature,passion,architecture'],
         ]);
 
         $imagePath = $portfolio->image;

@@ -66,27 +66,32 @@
         </div>
     </div>
 
-    <!-- Masonry Gallery -->
-    <div class="masonry-grid mb-24">
-        <!-- Dynamic Portfolio Items from Admin -->
-        @forelse ($portfolios as $portfolio)
-        <div class="masonry-item group relative overflow-hidden rounded-xl bg-neutral-dark cursor-pointer">
-            <img class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                 alt="Portfolio Item"
-                 src="{{ asset($portfolio->image) }}" />
+    <!-- Grid Gallery (3-per-row). Show category badge only for first two images -->
+    <section class="mb-12">
+        <div class="grid grid-cols-3 gap-6 mb-6" style="grid-template-columns:repeat(3,minmax(0,1fr)) !important;">
+            @forelse ($portfolios as $portfolio)
+                <div class="relative group overflow-hidden rounded-2xl bg-neutral-dark cursor-pointer">
+                    <img class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition-all duration-500 rounded-2xl"
+                         alt="Portfolio Item"
+                        src="{{ asset($portfolio->image) }}" />
 
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">{{ ucfirst($portfolio->category) }}</p>
-                <h3 class="text-xl font-bold mb-3 text-white">Portfolio Item</h3>
-                <a href="#" class="flex items-center gap-2 text-sm font-bold text-white hover:underline underline-offset-4">
-                    View Project
-                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                </a>
-            </div>
+                    @if ($loop->index < 2)
+                        <div class="absolute left-3 top-3 bg-black/60 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">{{ ucfirst($portfolio->category) }}</div>
+                    @endif
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold mb-3 text-white">Portfolio Item</h3>
+                        <a href="#" class="flex items-center gap-2 text-sm font-bold text-white hover:underline underline-offset-4">
+                            View Project
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            @empty
+                <div class="col-span-full text-center py-10 text-slate-500 dark:text-slate-400">No portfolio items yet.</div>
+            @endforelse
         </div>
-        @empty
-        @endforelse
-    </div>
+    </section>
 
 </main>
 

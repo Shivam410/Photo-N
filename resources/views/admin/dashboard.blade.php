@@ -37,6 +37,7 @@
                         </p>
                         <p class="text-primary text-xs mt-2">Manage portfolio →</p>
                     </a>
+
                 </section>
 
                 <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
@@ -102,6 +103,7 @@
                         </div>
                     </div>
                 </section>
+
             </main>
 
 @include('admin.partials.footer')
